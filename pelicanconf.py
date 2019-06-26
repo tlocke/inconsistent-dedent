@@ -40,6 +40,5 @@ MONTH_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/{date:%b}/index.html'
 DISPLAY_CATEGORIES_ON_MENU = False
 MENUITEMS = (
     ('Archive', '/archives.html'),
-    ('Twitter', 'http://twitter.com/t_locke'),
     ('GitHub', 'https://github.com/tlocke')
 )
