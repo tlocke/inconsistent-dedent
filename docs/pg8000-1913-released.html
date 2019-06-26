@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - pg8000-1.9.13 Released</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">pg8000-1.9.13 Released</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2014-07-27T04:31:00+01:00">
+      Sun 27 July 2014
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I've been doing quite a bit of work on trying to get pg8000 to pass all the SQLAlchemy tests. As well as improving the pg8000 dialect of SQLAlchemy, it's also beneficial for pg8000 itself, because the SQLAlchemy tests are so comprehensive.  </p>
+<p>Here are the <a href="https://pythonhosted.org/pg8000/release_notes.html#version-1-9-13-2014-07-27">changes in this new pg8000 release</a>:  </p>
+<ul>
+<li>Reverted to using the string <code class="docutils literal">connection is closed</code> as the message of the exception that’s thrown if a connection is closed. For a few versions we were using a slightly different one with capitalization and punctuation, but we’ve reverted to the original because it’s easier for users of the library to consume.</li>
+<li>Previously, <code class="docutils literal">tpc_recover()</code> would start a transaction if one was not already in progress. Now it won’t.</li>
+</ul>
+<p>I've also created a <a href="https://github.com/zzzeek/sqlalchemy/pull/125">pull request</a> for SQLAlchemy that should have it passing nearly all tests.  </p>
+<p>Next steps are to work on some of the pg8000 bugs / feature request.</p>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

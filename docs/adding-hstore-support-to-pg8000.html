@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Adding hstore support to pg8000</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Adding hstore support to pg8000</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2014-08-03T07:42:00+01:00">
+      Sun 03 August 2014
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>In the pg8000-1.9.14 release the changes were:  </p>
+<ul>
+<li>Make <code>executemany()</code> set <code>rowcount</code>. Previously, <code>executemany()</code> would always set <code>rowcount</code> to -1. Now we set it to a meaningful value if possible. If any of the statements have a -1 <code>rowcount</code> then then the <code>rowcount</code> for the <code>executemany()</code> is -1, otherwise the <code>executemany()rowcount</code> is the sum of the rowcounts of the individual statements.</li>
+<li>Support for password authentication. pg8000 didn’t support plain text authentication, now it does.</li>
+</ul>
+<p>Now I think we can continue on our campaign to get pg8000 passing all of the SQLAlchemy tests. I thought we'd actually got there, but <a href="https://github.com/zzzeek/sqlalchemy/pull/88#issuecomment-44669582">Mike Bayer pointed out</a> that I was running the default version of PostgreSQL which doesn't have the HSTORE and JSON types, and tests for these were failing. I'm running Ubuntu, so I wonder how to enable these types?<br>
+Hold on, first let's do a test for HSTORE that fails:  </p>
+<blockquote>
+<p><code>val = '"a"=&gt;"1"'self.cursor.execute("SELECT cast(%s as hstore)", (val,))retval = self.cursor.fetchall()self.assertEqual(retval[0][0], val)</code></p>
+</blockquote>
+<p>Right, now we're getting the error 'HSTORE does not exist'. Good, that's what we expect. From <a href="https://help.ubuntu.com/community/PostgreSQL">the docs</a> it looks like we just do:  </p>
+<blockquote>
+<p><code>sudo apt-get install postgresql-contrib</code></p>
+</blockquote>
+<p>and we have to enable the extension:  </p>
+<blockquote>
+<p><code>CREATE EXTENSION hstore;</code></p>
+</blockquote>
+<p>And it works! Also, our test doesn't fail, so pg8000 supported HSTORE all along. Let's run the SQLAlchemy tests and see what happens. Well, everything seems to work, so all good! I think we can mark the issue in GitHub as closed and that's the end of the story.</p>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

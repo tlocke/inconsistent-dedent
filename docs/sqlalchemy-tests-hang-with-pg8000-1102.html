@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - SQLAlchemy tests hang with pg8000 1.10.2</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">SQLAlchemy tests hang with pg8000 1.10.2</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2015-04-15T12:56:00+01:00">
+      Wed 15 April 2015
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Before doing a new release of pg8000 I generally run the full suite of SQLAlchemy tests (as well as pg8000's own test suite). This time with pg8000 1.10.2 I found that the tests hung at:  </p>
+<div class="highlight"><pre><span></span><span class="n">test</span><span class="o">/</span><span class="n">dialect</span><span class="o">/</span><span class="n">test_oracle</span><span class="p">.</span><span class="n">py</span><span class="p">::</span><span class="n">CompatFlagsTest</span><span class="p">::</span><span class="n">test_ora8_flags</span> <span class="n">PASSED</span>
+</pre></div>
+
+
+<p>doing CTRL-C let the tests carry on, not missing out any. Since pg8000 passed its own tests, I went ahead and released it anyway. Publish and be damned! Not a good attitude.  </p>
+<p>So here I am at the <a href="http://www.meetup.com/CodeHub-Bristol/events/220774326/">Bristol Hack Night</a>, and determined to fix this bug. I reached out to the SQLAlchemy mailing list, and got <a href="https://groups.google.com/forum/#!searchin/sqlalchemy/pg8000/sqlalchemy/JxVovTmw7m4/4dr3AynbP54J">some pointers</a> from the ever helpful and hugely talented Mike Bayer.  </p>
+<p>I've made no progress. Even printing stuff out to stderr made the bug go away. What will I do?  </p>
+<p>Skip forward many days...  </p>
+<p>I'm now at the <a href="http://www.meetup.com/Meanbee-Hack-Nights/events/221569943/">Meanbee Hack Night</a> in Bath. After the lack of progress last time, I've got some new leads. The aforementioned Mike Bayer made a <a href="https://groups.google.com/forum/#!topic/sqlalchemy/TFJGXR0jKPo">second post</a> saying:  </p>
+<blockquote>
+<p>44a9820b4e02f65b3884fa2c016efc has a fix which adds explicit cleanup to a few connection objects that are checked out and not closed, leading to the pool._refs collection to not be empty when that particular test starts.</p>
+</blockquote>
+<p>So I'll <code>fetch</code> that and see how the tests run...  </p>
+<p>Everything runs okay now, so case closed.</p>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

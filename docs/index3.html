@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Inconsistent Dedent</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+  <section id="content">
+    <ul id="post-list">
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/pgday-uk.html" rel="bookmark" title="Permalink to PGDay UK">PGDay UK</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2015-07-06T12:42:00+01:00"> Mon 06 July 2015 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>It's <a href="http://postgresqlusergroup.org.uk/">PGDay UK</a> tomorrow, and I'll be speaking on connecting to PostgreSQL with Python. See you there if you're going!</p>
+                <a class="readmore" href="/pgday-uk.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/odfio.html" rel="bookmark" title="Permalink to ODFIO">ODFIO</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2015-06-07T02:53:00+01:00"> Sun 07 June 2015 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>I've started a project <a href="https://github.com/tlocke/odfio">ODFIO</a>, which at first will write out <a href="http://en.wikipedia.org/wiki/OpenDocument">ODF</a> spreadsheets. Well, I'm sitting outside at the Green Park cafe. I think I'll start by creating an ODS spreadsheet and checking that it's valid.</p>
+                <a class="readmore" href="/odfio.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/mobile-usability-issue-on-mtrhub-ii.html" rel="bookmark" title="Permalink to Mobile Usability Issue On MtrHub II">Mobile Usability Issue On MtrHub II</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2015-06-04T11:54:00+01:00"> Thu 04 June 2015 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>This is just a follow-up to a previous post: <a href="http://inconsistent-dedent.tlocke.org.uk/2015/05/mobile-usability-isse-on-mtrhub.html">Mobile Usability Issue On MtrHub</a>. It seems that Google Webmaster tools doesn't like the fact that on a mobile browser the table on the front page was too wide. Webmaster tools was quite right, so I've <a href="http://www.mtrhub.com/">reduced it by a couple …</a></p>
+                <a class="readmore" href="/mobile-usability-issue-on-mtrhub-ii.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/mobile-usability-isse-on-mtrhub.html" rel="bookmark" title="Permalink to Mobile Usability Issue On MtrHub">Mobile Usability Issue On MtrHub</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2015-05-20T13:41:00+01:00"> Wed 20 May 2015 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Well, here I am at the <a href="http://www.meetup.com/Meanbee-Hack-Nights/events/222152897/">Meanbee Hack Night</a>, and I'm planning on working on MtrHub. <a href="https://www.google.com/webmasters/tools/home?hl=en">Google Webmaster Tools</a> flagged up a 'mobile usability issue', so that's what I've got to fix. First thing is to get everything working on my laptop...  </p>
+<p>Btw, since upgrading to Ubuntu 15.04, git …</p>
+                <a class="readmore" href="/mobile-usability-isse-on-mtrhub.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/sqlalchemy-tests-hang-with-pg8000-1102.html" rel="bookmark" title="Permalink to SQLAlchemy tests hang with pg8000 1.10.2">SQLAlchemy tests hang with pg8000 1.10.2</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2015-04-15T12:56:00+01:00"> Wed 15 April 2015 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Before doing a new release of pg8000 I generally run the full suite of SQLAlchemy tests (as well as pg8000's own test suite). This time with pg8000 1.10.2 I found that the tests hung at:  </p>
+<div class="highlight"><pre><span></span><span class="n">test</span><span class="o">/</span><span class="n">dialect</span><span class="o">/</span><span class="n">test_oracle</span><span class="p">.</span><span class="n">py</span><span class="p">::</span><span class="n">CompatFlagsTest</span><span class="p">::</span><span class="n">test_ora8_flags</span> <span class="n">PASSED</span>
+</pre></div>
+
+
+<p>doing CTRL-C let the tests carry …</p>
+                <a class="readmore" href="/sqlalchemy-tests-hang-with-pg8000-1102.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/timeout-with-socketmakefile.html" rel="bookmark" title="Permalink to Timeout with socket.makefile()">Timeout with socket.makefile()</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2015-02-22T10:50:00+00:00"> Sun 22 February 2015 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>The <a href="https://groups.google.com/forum/#!topic/pg8000/3BefdOSvg5g">question was asked</a>, 'without a socket timeout in pg8000, how can we tell if there's been a network failure or similar problem?'.  </p>
+<p>The reason the socket timeout was removed was this sentence in <a href="https://docs.python.org/2/library/socket.html#socket.socket.makefile">the docs</a> for socket.makefile():  </p>
+<blockquote>
+<p>The socket must be in blocking mode (it can not have …</p></blockquote>
+                <a class="readmore" href="/timeout-with-socketmakefile.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/pg8000-database-name-encoding.html" rel="bookmark" title="Permalink to pg8000: database name encoding">pg8000: database name encoding</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2015-01-17T05:23:00+00:00"> Sat 17 January 2015 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>We had a bit of a bootstrapping problem with <a href="https://github.com/mfenniak/pg8000">pg8000</a>, where the first message of the protocol contains the database name. The database name could be in one of a number of character sets eg. Unicode or EUC-JP. The problem is that when pg8000 sends the first message, it doesn't …</p>
+                <a class="readmore" href="/pg8000-database-name-encoding.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/markup.html" rel="bookmark" title="Permalink to Markup">Markup</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2014-11-06T08:58:00+00:00"> Thu 06 November 2014 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>I wrote a tutorial on propositional logic a couple of weeks ago. I wrote it out on paper, and now comes the task of putting it online. I wanted to write one document and from that produce a website and an EPUB book. My first thought was LaTeX, and I …</p>
+                <a class="readmore" href="/markup.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/the-wheel-format.html" rel="bookmark" title="Permalink to The Wheel Format">The Wheel Format</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2014-09-15T12:00:00+01:00"> Mon 15 September 2014 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Actually, the <a href="http://inconsistent-dedent.tlocke.org.uk/2014/09/a-false-lead.html">False Lead</a> kind of led to something in the end. When pg8000 established a connection, messages end in either a READY_FOR_QUERY or a ERROR_RESPONSE, whereas in the query phase, messages only ever end with a READY_FOR_QUERY. So I've separated out the two bits of code, and each is …</p>
+                <a class="readmore" href="/the-wheel-format.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/a-false-lead.html" rel="bookmark" title="Permalink to A False Lead">A False Lead</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2014-09-06T09:32:00+01:00"> Sat 06 September 2014 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>There are a couple of bugs with pg8000 that I've been unable to reproduce, after trying quite hard for some time. The other day I had a flash of inspiration that it could be caused by not closing the connection when there's a timeout on reading a response from the …</p>
+                <a class="readmore" href="/a-false-lead.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+    </ul><!-- /#posts-list -->
+<p class="paginator">
+        <a href="/index2.html">&laquo;</a>
+    Page 3 / 4
+        <a href="/index4.html">&raquo;</a>
+</p>
+  </section><!-- /#content -->
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

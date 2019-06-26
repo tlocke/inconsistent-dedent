@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Timeout with socket.makefile()</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Timeout with socket.makefile()</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2015-02-22T10:50:00+00:00">
+      Sun 22 February 2015
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>The <a href="https://groups.google.com/forum/#!topic/pg8000/3BefdOSvg5g">question was asked</a>, 'without a socket timeout in pg8000, how can we tell if there's been a network failure or similar problem?'.  </p>
+<p>The reason the socket timeout was removed was this sentence in <a href="https://docs.python.org/2/library/socket.html#socket.socket.makefile">the docs</a> for socket.makefile():  </p>
+<blockquote>
+<p>The socket must be in blocking mode (it can not have a timeout).</p>
+</blockquote>
+<p>However in the <a href="https://docs.python.org/3.4/library/socket.html#socket.socket.makefile">Python 3.4 docs</a> it says:  </p>
+<blockquote>
+<p>The socket must be in blocking mode; it can have a timeout, but the file object’s internal buffer may end up in a inconsistent state if a timeout occurs.</p>
+</blockquote>
+<p>So as long as we throw away the file object if a timeout occurs, we're okay to have a timeout under 3.4.</p>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

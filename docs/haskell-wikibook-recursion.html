@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Haskell Wikibook: Recursion</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Haskell Wikibook: Recursion</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-04-10T14:00:00+01:00">
+      Sun 10 April 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Here are my answers for the Recursion chapter of the Haskell Wikibook:  </p>
+<blockquote>
+<ol>
+<li>Type the factorial function into a Haskell source file and load it into GHCi.</li>
+<li>Try examples like <code>factorial 5</code> and <code>factorial 1000</code>.^<a href="https://en.wikibooks.org/wiki/Haskell/Recursion#cite_note-3">[3]</a>^<ul>
+<li>What about <code>factorial (-1)</code>? Why does this happen?</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p>Calling factorial (-1) will never stop because the argument to the factorial function always decreases which means it never gets to zero, the stopping condition.  </p>
+<blockquote>
+<ol>
+<li>The <em>double factorial</em> of a number n is the product of <em>every other</em> number from 1 (or 2) up to n. For example, the double factorial of 8 is 8 × 6 × 4 × 2 = 384, and the double factorial of 7 is 7 × 5 × 3 × 1 = 105. Define a <code>doublefactorial</code> function in Haskell.</li>
+</ol>
+</blockquote>
+<p><samp>doubleFactorial 0 = 1<br>
+doubleFactorial 1 = 1<br>
+doubleFactorial n = n * doubleFactorial (n - 2) </samp><br>
+<samp><br>
+</samp>  </p>
+<blockquote>
+<ol>
+<li>
+<p>Expand out the multiplication 5 × 4 similarly to the expansion we used above for <code>factorial 3</code>.  </p>
+<ul>
+<li>
+<p>4 isn't 0 or 1 so calculate (mult 5 3) + 5</p>
+<ul>
+<li>
+<p>3 isn't 0 or 1 so calculate (mult 5 2) + 5</p>
+<ul>
+<li>
+<p>2 isn't 0 or 1 so calculate (mult 5 1) + 5</p>
+<ul>
+<li>For 1, return 5</li>
+</ul>
+<p>Continue the calculation for 2, which gives 10.</p>
+</li>
+</ul>
+<p>Continue the calculation for 3 which gives 15.</p>
+</li>
+</ul>
+<p>Continue the calculation for 4 which gives 20.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Define a recursive function <code>power</code> such that <code>power x y</code> raises <code>x</code> to the <code>y</code> power.  </p>
+<div class="highlight"><pre><span></span><span class="n">power</span> <span class="n">_</span> <span class="mi">0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">power</span> <span class="n">x</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">x</span>
+<span class="n">power</span> <span class="n">x</span> <span class="n">y</span> <span class="o">=</span> <span class="n">power</span> <span class="n">x</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>You are given a function <code>plusOne x = x + 1</code>. Without using any other <code>(+)</code>s, define a recursive function <code>addition</code> such that <code>addition x y</code> adds <code>x</code> and <code>y</code> together.</p>
+</li>
+</ol>
+</blockquote>
+<p><samp>addition x 0 = x<br>
+addition x y = addition (plusOne x) (y - 1)</samp>  </p>
+<blockquote>
+<ol>
+<li>(Harder) Implement the function <code>log2</code>, which computes the integer log (base 2) of its argument. That is, <code>log2</code> computes the exponent of the largest power of 2 which is less than or equal to its argument. For example, <code>log2 16 = 4</code>, <code>log2 11 = 3</code>, and <code>log2 1 = 0</code>. (Small hint: read the last phrase of the paragraph immediately preceding these exercises.)  <div class="highlight"><pre><span></span><span class="n">log2</span> <span class="n">x</span> <span class="o">=</span> <span class="n">higher</span> <span class="n">x</span> <span class="mi">0</span>
+        <span class="k">where</span>
+        <span class="n">higher</span> <span class="n">x</span> <span class="n">n</span>
+                <span class="o">|</span> <span class="n">power</span> <span class="mi">2</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="o">|</span> <span class="n">otherwise</span>     <span class="o">=</span> <span class="n">higher</span> <span class="n">x</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+</li>
+</ol>
+</blockquote>
+<p>Give recursive definitions for the following list-based functions. In each case, think what the base case would be, then think what the general case would look like, in terms of everything smaller than it. (Note that all of these functions are available in Prelude, so you will want to give them different names when testing your definitions in GHCi.)  </p>
+<ol>
+<li>
+<p><code>replicate :: Int -&gt; a -&gt; [a]</code>, which takes a count and an element and returns the list which is that element repeated that many times. E.g. <code>replicate 3 'a' = "aaa"</code>. (Hint: think about what replicate of anything with a count of 0 should be; a count of 0 is your 'base case'.)  </p>
+<div class="highlight"><pre><span></span><span class="n">myReplicate</span> <span class="mi">0</span> <span class="n">_</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">myReplicate</span> <span class="n">n</span> <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="p">:</span> <span class="n">myReplicate</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">a</span>
+</pre></div>
+
+
+</li>
+<li>
+<p><code>(!!) :: [a] -&gt; Int -&gt; a</code>, which returns the element at the given 'index'. The first element is at index 0, the second at index 1, and so on. Note that with this function, you're recursing <em>both</em> numerically and down a list^<a href="https://en.wikibooks.org/wiki/Haskell/Recursion#cite_note-5">[5]</a>^.  </p>
+<div class="highlight"><pre><span></span><span class="n">myIndex</span> <span class="n">l</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">head</span> <span class="n">l</span>
+<span class="n">myIndex</span> <span class="n">l</span> <span class="n">i</span> <span class="o">=</span> <span class="n">myIndex</span> <span class="p">(</span><span class="n">tail</span> <span class="n">l</span><span class="p">)</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>(A bit harder.) <code>zip :: [a] -&gt; [b] -&gt; [(a, b)]</code>, which takes two lists and 'zips' them together, so that the first pair in the resulting list is the first two elements of the two lists, and so on. E.g. <code>zip [1,2,3] "abc" = [(1, 'a'), (2, 'b'), (3, 'c')]</code>. If either of the lists is shorter than the other, you can stop once either list runs out. E.g. <code>zip [1,2] "abc" = [(1, 'a'), (2, 'b')]</code>.</p>
+<p><dl>
+<dd></p>
+<p></dd>
+</dl>
+    myZip [] l2 = []
+    myZip l1 [] = []
+    myZip l1 l2 = (head l1, head l2) : myZip (tail l1) (tail l2)</p>
+</li>
+<li>
+<p>Define <code>length</code> using an auxiliary function and an accumulating parameter, as in the loop-like alternate version of <code>factorial</code>.  </p>
+<div class="highlight"><pre><span></span><span class="n">myLength</span> <span class="n">l</span> <span class="o">=</span> <span class="n">len</span> <span class="n">l</span> <span class="mi">0</span>
+        <span class="k">where</span>
+        <span class="n">len</span> <span class="p">[]</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+        <span class="n">len</span> <span class="n">l</span> <span class="n">n</span> <span class="o">=</span> <span class="n">len</span> <span class="p">(</span><span class="n">tail</span> <span class="n">l</span><span class="p">)</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+</li>
+</ol>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

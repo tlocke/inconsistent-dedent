@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - pg8000: database name encoding</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">pg8000: database name encoding</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2015-01-17T05:23:00+00:00">
+      Sat 17 January 2015
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>We had a bit of a bootstrapping problem with <a href="https://github.com/mfenniak/pg8000">pg8000</a>, where the first message of the protocol contains the database name. The database name could be in one of a number of character sets eg. Unicode or EUC-JP. The problem is that when pg8000 sends the first message, it doesn't know the encoding, and so can't encode the database name correctly!  </p>
+<p>The answer, I found from <a href="http://www.postgresql.org/message-id/1330344173.7111.23.camel@vanquo.pezone.net">an email</a> is:  </p>
+<blockquote>
+<p>In the connection request, you effectively need to specify the user name (and database name) as bytes in the encoding that you created them in.I don't think this is documented in an obvious way.</p>
+</blockquote>
+<p>So the user of pg8000 has to provide the database name as bytes, and then this is passed directly to the server.  </p>
+<p>As a convenience for users, pg8000 detects if the database name is provided as a unicode type, and if it is it encodes it as utf8.  </p>
+<p>The process of getting to this happy solution was a roundabout to-ing and fro-ing between me and <a href="https://github.com/mfenniak">Mathieu Fenniak</a>, and I don't think either of us would have got there on our own (or it would have taken a lot longer). So a fruitful collaboration!  </p>
+<p>I'm now continuing work on porting <a href="https://github.com/tlocke/imprimatur">Imprimatur</a> to Python...</p>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

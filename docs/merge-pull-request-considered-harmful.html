@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - “Merge pull request” Considered Harmful</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">“Merge pull request” Considered Harmful</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2014-08-25T05:28:00+01:00">
+      Mon 25 August 2014
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I've just finished re-reading Nathaniel Talbott's post, <a href="http://blog.spreedly.com/2014/06/24/merge-pull-request-considered-harmful/#.U_smDrthWFA">“Merge pull request” Considered Harmful</a> and I'm in complete agreement. I'm not sure I'd like to use Hub though, as it ties things too closely to GitHub. I wonder if there's a good way, just using Git? What I ended up doing was:</p>
+<blockquote>
+<p><code>git fetch https://github.com/sitaktif/pg8000.gitgit rebase FETCH_HEAD</code></p>
+</blockquote>
+<p>Then when I was happy I just did a <code>git push</code> as normal. Is this a good approach?</p>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Haskell Wikibook: Pattern Matching</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Haskell Wikibook: Pattern Matching</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-04-24T08:33:00+01:00">
+      Sun 24 April 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Here are my answers to the exercises in the <a href="https://en.wikibooks.org/wiki/Haskell/Pattern_matching">Haskell Wikibook: Pattern Matching</a> chapter:  </p>
+<blockquote>
+<ol>
+<li>
+<p>Test the flawed <code>h</code> function above in GHCi, with arguments equal to and different from 1. Then, explain what goes wrong.  </p>
+<p>The following code:  </p>
+<div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">h</span> <span class="p">::</span> <span class="nb">Int</span> <span class="o">-&gt;</span> <span class="n">Bool</span>
+<span class="n">h</span> <span class="n">k</span> <span class="o">=</span> <span class="k">True</span>
+<span class="n">h</span> <span class="n">_</span> <span class="o">=</span> <span class="k">False</span>
+</pre></div>
+
+
+<p>won't compile because the <code>k</code> that's defined to equal 1 is different from the <code>k</code> in the pattern. The two patterns for <code>h</code> overlap, they both match everything, one is anonymous and one is bound to <code>k</code>.  </p>
+</li>
+<li>
+<p>In this section about pattern matching with literal values, we made no mention of the boolean values <code>True</code> and <code>False</code>, but we can do pattern matching with them as well, as demonstrated in the <a href="https://en.wikibooks.org/wiki/Haskell/Next_steps#Introducing_pattern_matching" title="Haskell/Next steps">Next steps</a> chapter. Can you guess why we omitted them? (Hint: is there anything distinctive about the way we write boolean values?)  </p>
+<p>The literal values True and False begin with capital letters, and so could be confused with Types or Constructors.</p>
+</li>
+</ol>
+<p>Implement <code>scanr</code>, as in the exercise in <a href="https://en.wikibooks.org/wiki/Haskell/Lists_III#Scans" title="Haskell/Lists III">Lists III</a>, but this time using an as-pattern.  </p>
+<div class="highlight"><pre><span></span><span class="n">myScanr</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">b</span><span class="o">]</span><span class="w"></span>
+<span class="n">myScanr</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foldr</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"> </span><span class="n">l</span><span class="w"></span>
+<span class="w">        </span><span class="k">where</span><span class="w"></span>
+<span class="w">        </span><span class="n">g</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">list</span><span class="err">@</span><span class="p">(</span><span class="nl">y</span><span class="p">:</span><span class="n">ys</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">list</span><span class="w"></span>
+</pre></div>
+
+
+</blockquote>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

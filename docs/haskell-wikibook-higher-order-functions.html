@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Haskell wikibook: Higher-order functions</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Haskell wikibook: Higher-order functions</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-09-27T13:36:00+01:00">
+      Tue 27 September 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <blockquote>
+<p>Write <code>insensitive</code>, such that <code>quickSort' insensitive dictionary</code> gives <code>["a", "for", "have", "I", "Linux", "thing"]</code>.</p>
+</blockquote>
+<p>insensitive x y = compare (map toLower x) (map toLower y)  </p>
+<blockquote>
+<p>Exercises<br>
+<em>(Challenging)</em> The following exercise combines what you have learned about higher order functions, recursion and I/O. We are going to recreate what is known in imperative languages as a <em>for loop</em>. Implement a function  </p>
+<div class="highlight"><pre><span></span><span class="k">for</span> :: <span class="nv">a</span> <span class="o">-&gt;</span> <span class="ss">(</span><span class="nv">a</span> <span class="o">-&gt;</span> <span class="nv">Bool</span><span class="ss">)</span> <span class="o">-&gt;</span> <span class="ss">(</span><span class="nv">a</span> <span class="o">-&gt;</span> <span class="nv">a</span><span class="ss">)</span> <span class="o">-&gt;</span> <span class="ss">(</span><span class="nv">a</span> <span class="o">-&gt;</span> <span class="nv">IO</span> <span class="ss">())</span> <span class="o">-&gt;</span> <span class="nv">IO</span> <span class="ss">()</span>
+<span class="k">for</span> <span class="nv">i</span> <span class="nv">p</span> <span class="nv">f</span> <span class="nv">job</span> <span class="o">=</span> <span class="o">--</span> ???
+</pre></div>
+
+
+<p>An example of how this function would be used might be  </p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="mi">1</span> <span class="ss">(</span><span class="o">&lt;</span><span class="mi">10</span><span class="ss">)</span> <span class="ss">(</span><span class="o">+</span><span class="mi">1</span><span class="ss">)</span> <span class="nv">print</span>
+</pre></div>
+
+
+<p>which prints the numbers 1 to 9 on the screen.<br>
+The desired behaviour of <code>for</code> is: starting from an initial value <code>i</code>, <code>for</code> executes <code>job i</code>. It then uses <code>f</code> to modify this value and checks to see if the modified value <code>f i</code> satisfies some condition <code>p</code>. If it doesn't, it stops; otherwise, the for loop continues, using the modified <code>f i</code> in place of <code>i</code>.  </p>
+<ol>
+<li>Implement the for loop in Haskell.</li>
+</ol>
+</blockquote>
+<p>for :: a -&gt; (a -&gt; Bool) -&gt; (a -&gt; a) -&gt; (a -&gt; IO ()) -&gt; IO ()<br>
+for i p f job<br>
+        | p i       = do<br>
+                                job i<br>
+                                for (f i) p f job<br>
+        | otherwise = return ()  </p>
+<blockquote>
+<ol>
+<li>The paragraph just above gives an imperative description of the for loop. Describe your implementation in more functional terms.</li>
+</ol>
+</blockquote>
+<p>The for loop is a recursive function that returns the empty action for the base case if the condition being met. For other cases it executes the action, and then calls itself with the next i, which is found using f i.  </p>
+<blockquote>
+<p>Some more challenging exercises you could try  </p>
+<ol>
+<li>Consider a task like "print the list of numbers from 1 to 10". Given that <code>print</code> is a function, and we can apply it to a list of numbers, using <code>map</code> sounds like the natural thing to do. But would it actually work?</li>
+</ol>
+</blockquote>
+<p>No, because the 'print' function returns an action, and so would need to be sequenced with the 'do' command.  </p>
+<blockquote>
+<ol>
+<li>Implement a function <code>sequenceIO :: [IO a] -&gt; IO [a]</code>. Given a list of actions, this function runs each of the actions in order and returns all their results as a list.</li>
+</ol>
+</blockquote>
+<p>sequenceIO :: [IO a] -&gt; IO [a]<br>
+sequenceIO [] = do<br>
+        return []<br>
+sequenceIO (x:xs) = do<br>
+        r &lt;- x<br>
+        rs &lt;- (sequenceIO xs)<br>
+        return (r:rs)  </p>
+<p>I got most of the way there, but I had the last line as:  </p>
+<p>return r:rs  </p>
+<p>I had to look up the answer, and found that of course the parentheses were needed.  </p>
+<blockquote>
+<ol>
+<li>Implement a function <code>mapIO :: (a -&gt; IO b) -&gt; [a] -&gt; IO [b]</code> which given a function of type <code>a -&gt; IO b</code> and a list of type <code>[a]</code>, runs that action on each item in the list, and returns the results.</li>
+</ol>
+</blockquote>
+<p>mapIO :: (a -&gt; IO b) -&gt; [a] -&gt; IO [b]<br>
+mapIO _ [] = return []<br>
+mapIO f (x:xs) = do<br>
+        v &lt;- f x<br>
+        vs &lt;- (mapIO f xs)<br>
+        return (v:vs)  </p>
+<blockquote>
+<p>This exercise was inspired from a blog post by osfameron. No peeking!</p>
+</blockquote>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

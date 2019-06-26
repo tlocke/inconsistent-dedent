@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Haskell Wikibook: Lists III</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Haskell Wikibook: Lists III</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-04-17T11:32:00+01:00">
+      Sun 17 April 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Reading the Haskell Wikibook, Lists III chapter, I can't get my head round the idea that since Haskell has lazy evaluation, a foldr can be used on infinite lists. Here's foldr:  </p>
+<div class="highlight"><pre><span></span><span class="nv">foldr</span>            :: <span class="ss">(</span><span class="nv">a</span> <span class="o">-&gt;</span> <span class="nv">b</span> <span class="o">-&gt;</span> <span class="nv">b</span><span class="ss">)</span> <span class="o">-&gt;</span> <span class="nv">b</span> <span class="o">-&gt;</span> [<span class="nv">a</span>] <span class="o">-&gt;</span> <span class="nv">b</span>
+<span class="nv">foldr</span> <span class="nv">f</span> <span class="nv">acc</span> []     <span class="o">=</span> <span class="nv">acc</span>
+<span class="nv">foldr</span> <span class="nv">f</span> <span class="nv">acc</span> <span class="ss">(</span><span class="nv">x</span>:<span class="nv">xs</span><span class="ss">)</span> <span class="o">=</span> <span class="nv">f</span> <span class="nv">x</span> <span class="ss">(</span><span class="nv">foldr</span> <span class="nv">f</span> <span class="nv">acc</span> <span class="nv">xs</span><span class="ss">)</span>
+
+
+
+
+
+<span class="nv">say</span> <span class="nv">f</span> <span class="nv">is</span> <span class="ss">(</span>:<span class="ss">)</span> <span class="nv">and</span> <span class="nv">acc</span> <span class="nv">is</span> [] <span class="k">then</span>
+
+
+
+<span class="nv">foldr</span> <span class="ss">(</span>:<span class="ss">)</span> [] [<span class="mi">1</span>..] <span class="nv">is</span>:
+
+
+
+<span class="ss">(</span>:<span class="ss">)</span> <span class="mi">1</span> <span class="ss">(</span><span class="nv">foldr</span> <span class="ss">(</span>:<span class="ss">)</span> [] [<span class="mi">2</span>..]<span class="ss">)</span>
+
+<span class="ss">(</span>:<span class="ss">)</span> <span class="mi">1</span> <span class="ss">((</span>:<span class="ss">)</span> <span class="mi">2</span> <span class="ss">(</span><span class="nv">foldr</span> <span class="ss">(</span>:<span class="ss">)</span> [] [<span class="mi">3</span>..]<span class="ss">))</span>
+
+<span class="ss">(</span>:<span class="ss">)</span> <span class="mi">1</span> <span class="ss">((</span>:<span class="ss">)</span> <span class="mi">2</span> <span class="ss">((</span>:<span class="ss">)</span> <span class="mi">3</span> <span class="ss">(</span><span class="nv">foldr</span> <span class="ss">(</span>:<span class="ss">)</span> [] [<span class="mi">4</span>..]<span class="ss">)))</span>
+
+<span class="nv">Okay</span>, <span class="nv">so</span> <span class="nv">I</span> <span class="nv">can</span> <span class="nv">see</span> <span class="nv">that</span> <span class="nv">since</span> <span class="nv">Haskell</span> <span class="nv">has</span> <span class="nv">lazy</span> <span class="nv">evaluation</span> <span class="nv">you</span> <span class="nv">can</span> <span class="nv">write</span>:
+
+<span class="nv">take</span> <span class="mi">10</span> <span class="ss">(</span><span class="nv">foldr</span> <span class="ss">(</span>:<span class="ss">)</span> [] [<span class="mi">1</span>..]<span class="ss">)</span>
+
+<span class="nv">and</span> <span class="nv">it</span><span class="s1">&#39;</span><span class="s">ll come out with:</span>
+
+[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>,<span class="mi">8</span>,<span class="mi">9</span>,<span class="mi">10</span>]
+
+<span class="nv">and</span> <span class="nv">foldl</span> <span class="nv">is</span>:
+
+<span class="nv">foldl</span>            :: <span class="ss">(</span><span class="nv">a</span> <span class="o">-&gt;</span> <span class="nv">b</span> <span class="o">-&gt;</span> <span class="nv">a</span><span class="ss">)</span> <span class="o">-&gt;</span> <span class="nv">a</span> <span class="o">-&gt;</span> [<span class="nv">b</span>] <span class="o">-&gt;</span> <span class="nv">a</span>
+<span class="nv">foldl</span> <span class="nv">f</span> <span class="nv">acc</span> []     <span class="o">=</span>  <span class="nv">acc</span>
+<span class="nv">foldl</span> <span class="nv">f</span> <span class="nv">acc</span> <span class="ss">(</span><span class="nv">x</span>:<span class="nv">xs</span><span class="ss">)</span> <span class="o">=</span>  <span class="nv">foldl</span> <span class="nv">f</span> <span class="ss">(</span><span class="nv">f</span> <span class="nv">acc</span> <span class="nv">x</span><span class="ss">)</span> <span class="nv">xs</span>
+
+<span class="nv">so</span> <span class="k">if</span> <span class="nv">f</span> <span class="nv">is</span> <span class="ss">(</span>:<span class="ss">)</span> <span class="nv">and</span> <span class="nv">acc</span> <span class="nv">is</span> [] <span class="k">then</span>:
+
+<span class="nv">foldl</span> <span class="ss">(</span>:<span class="ss">)</span> [] [<span class="mi">1</span>..]
+
+<span class="nv">foldl</span> <span class="ss">(</span>:<span class="ss">)</span> [<span class="mi">1</span>] [<span class="mi">2</span>..]
+
+<span class="nv">foldl</span> <span class="ss">(</span>:<span class="ss">)</span> [<span class="mi">1</span>,<span class="mi">2</span>] [<span class="mi">3</span>..]
+
+<span class="nv">so</span> <span class="nb">result</span> <span class="nv">isn</span><span class="s1">&#39;</span><span class="s">t given element by element, it has to be calculated all in one go. So:</span>
+
+<span class="nv">take</span> <span class="mi">10</span> <span class="ss">(</span><span class="nv">foldl</span> <span class="ss">(</span>:<span class="ss">)</span> [] [<span class="mi">1</span>..]<span class="ss">)</span>
+</pre></div>
+
+
+<p>[will never halt. So I can see all that. What I can't comprehend is that foldr applies f in a right-associative fashion. Now in my mind, right-associative means that in a sequence of terms, the right hand one is evaluated first. So in an infinite list that would mean starting at infinity which is impossible! So:]{.p}  </p>
+<p>[1 : 2 : 3 : 4 : []]{.p}  </p>
+<p>[1 : (2 : (3 : (4 : []))]{.p}  </p>
+<p>[So I think my conception of right-associative is incorrect. It should be that terms are grouped from the right, not necessarily evaluated from the right. In a language with eager evaluation it would be evaluated from the innermost group working outwards, but in a language with lazy evaluation the innermost group is evaluated last.]{.p}  </p>
+<p>[I've sort of got it. I suppose that even if I don't understand it I'm familiar with it!]{.p}  </p>
+<p>[Another thing that strikes me is that compared to Python there are loads of functions and variations of functions in Prelude (in comparison to Python's builtin's). Perhaps this is because Haskell is statically types, which makes it harder to have a single function that fits all types.]{.p}  </p>
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+
+<p>[Here are my answers to Haskell Wikibook: Lists III.]{.p}  </p>
+<blockquote>
+<ol>
+<li>
+<p>Define the following functions recursively (like the definitions for <code>sum</code>, <code>product</code> and <code>concat</code> above), then turn them into a fold:</p>
+<ul>
+<li>
+<p><code>and :: [Bool] -&gt; Bool</code>, which returns True if a list of Bools are all True, and False otherwise.  </p>
+<div class="highlight"><pre><span></span><span class="n">myAndRec</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">[</span><span class="n">Bool</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Bool</span><span class="w"></span>
+<span class="n">myAndRec</span><span class="w"> </span><span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
+<span class="n">myAndRec</span><span class="w"> </span><span class="p">(</span><span class="nl">x</span><span class="p">:</span><span class="n">xs</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">myAndRec</span><span class="w"> </span><span class="n">xs</span><span class="w"></span>
+</pre></div>
+
+
+<p>And using folds:  </p>
+<div class="highlight"><pre><span></span><span class="n">myAnd</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">[</span><span class="n">Bool</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Bool</span><span class="w"></span>
+<span class="n">myAnd</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foldr</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">True</span><span class="w"> </span><span class="n">l</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+<li>
+<p><code>or :: [Bool] -&gt; Bool</code>, which returns True if any of a list of Bools are True, and False otherwise.  </p>
+<div class="highlight"><pre><span></span><span class="n">myOrRec</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">[</span><span class="n">Bool</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Bool</span><span class="w"></span>
+<span class="n">myOrRec</span><span class="w"> </span><span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">True</span><span class="w"></span>
+<span class="n">myOrRec</span><span class="w"> </span><span class="p">(</span><span class="nl">x</span><span class="p">:</span><span class="n">xs</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">myOrRec</span><span class="w"> </span><span class="n">xs</span><span class="w"></span>
+
+<span class="n">myOr</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">[</span><span class="n">Bool</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Bool</span><span class="w"></span>
+<span class="n">myOr</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foldr</span><span class="w"> </span><span class="p">(</span><span class="o">||</span><span class="p">)</span><span class="w"> </span><span class="k">True</span><span class="w"> </span><span class="n">l</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+</ul>
+</li>
+<li>
+<p>Define the following functions using <code>foldl1</code> or <code>foldr1</code>:</p>
+<ul>
+<li>
+<p><code>maximum :: Ord a =&gt; [a] -&gt; a</code>, which returns the maximum element of a list (hint: <code>max :: Ord a =&gt; a -&gt; a -&gt; a</code> returns the maximum of two values).  </p>
+<div class="highlight"><pre><span></span><span class="n">myMaximum</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">Ord</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="n">myMaximum</span><span class="w"> </span><span class="n">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foldr1</span><span class="w"> </span><span class="nf">max</span><span class="w"> </span><span class="n">xs</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+<li>
+<p><code>minimum :: Ord a =&gt; [a] -&gt; a</code>, which returns the minimum element of a list (hint: <code>min :: Ord a =&gt; a -&gt; a -&gt; a</code> returns the minimum of two values).  </p>
+<div class="highlight"><pre><span></span><span class="n">myMinimum</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">Ord</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="n">myMinimum</span><span class="w"> </span><span class="n">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foldr1</span><span class="w"> </span><span class="nf">min</span><span class="w"> </span><span class="n">xs</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+</ul>
+</li>
+<li>
+<p>Use a fold (<em>which one?</em>) to define <code>reverse :: [a] -&gt; [a]</code>, which returns a list with the elements in reverse order.  </p>
+<div class="highlight"><pre><span></span><span class="n">myReverse</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"></span>
+<span class="n">myReverse</span><span class="w"> </span><span class="n">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foldr</span><span class="w"> </span><span class="p">(</span><span class="err">\</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="o">[</span><span class="n">x</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="err">[]</span><span class="w"> </span><span class="n">xs</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+</ol>
+<p><dl>
+<dd>
+Note that all of these are Prelude functions, so they will be always close at hand when you need them. (Also, that means you must use slightly different names in order to test your answers in GHCi.)</p>
+<p></dd>
+</dl></p>
+<ol>
+<li>
+<p>Write your own definition of <code>scanr</code>, first using recursion, and then using <code>foldr</code>. Do the same for <code>scanl</code> first using recursion then <code>foldl</code>.  </p>
+<div class="highlight"><pre><span></span><span class="n">myScanrRec</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">b</span><span class="o">]</span><span class="w"></span>
+<span class="n">myScanrRec</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"></span>
+<span class="n">myScanrRec</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">[</span><span class="n">x:xs</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="n">r</span><span class="p">))</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">r</span><span class="w"></span>
+<span class="w">        </span><span class="k">where</span><span class="w"></span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myScanrRec</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">xs</span><span class="w"></span>
+
+<span class="n">myScanrFold</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">b</span><span class="o">]</span><span class="w"></span>
+<span class="n">myScanrFold</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foldr</span><span class="w"> </span><span class="p">(</span><span class="err">\</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"> </span><span class="n">l</span><span class="w"></span>
+
+<span class="n">myScanlRec</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">b</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"></span>
+<span class="n">myScanlRec</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="err">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"></span>
+<span class="n">myScanlRec</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="o">[</span><span class="n">f (last r) (last l)</span><span class="o">]</span><span class="w"> </span>
+<span class="w">        </span><span class="k">where</span><span class="w"></span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myScanlRec</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">(</span><span class="n">init</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">myScanlFold</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">b</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"> </span>
+<span class="n">myScanlFold</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foldl</span><span class="w"> </span><span class="p">(</span><span class="err">\</span><span class="n">x</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="o">[</span><span class="n">f (last x) y</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"> </span><span class="n">l</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Define the following functions:</p>
+<ul>
+<li><code>factList :: Integer -&gt; [Integer]</code>, which returns a list of factorials from 1 up to its argument. For example, <code>factList 4 = [1,2,6,24]</code>.  <div class="highlight"><pre><span></span><span class="n">factList</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="k">Integer</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">Integer</span><span class="o">]</span><span class="w"></span>
+<span class="n">factList</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scanl1</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">1..n</span><span class="o">]</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<ol>
+<li>
+<p>Write a <code>returnDivisible :: Int -&gt; [Int] -&gt; [Int]</code> function which filters a list of integers retaining only the numbers divisible by the integer passed as first argument. For integers x and n, x is divisible by n if <code>(mod x n) == 0</code> (note that the test for evenness is a specific case of that).  </p>
+<div class="highlight"><pre><span></span><span class="n">returnDivisible</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="nc">Int</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">Int</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">Int</span><span class="o">]</span><span class="w"> </span>
+<span class="n">returnDivisible</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="n">ns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">x | x &lt;- ns, mod x n == 0</span><span class="o">]</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Write a function <code>choosingTails :: [[Int]] -&gt; [[Int]]</code> using list comprehension syntax with appropriate guards (filters) for empty lists returning a list of tails following a head bigger than 5:</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+
+<div class="highlight"><pre><span></span><span class="n">choosingTails</span>  <span class="p">[[</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">],[],[</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>
+<span class="c1">-- [[6,3],[4,2],[4,3]]</span>
+</pre></div>
+
+
+</div>
+
+<div class="highlight"><pre><span></span><span class="n">choosingTails</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">[</span><span class="n">[Int</span><span class="o">]</span><span class="err">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">[Int</span><span class="o">]</span><span class="err">]</span><span class="w"></span>
+<span class="n">choosingTails</span><span class="w"> </span><span class="n">nss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">tail ns | ns &amp;lt- nss, length ns &gt; 0, head ns &gt; 5</span><span class="o">]</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Does the order of guards matter? You may find it out by playing with the function of the preceding exercise.  </p>
+</li>
+</ol>
+<p>Yes, the order does matter. In the example above the test for empty lists must come first otherwise the subsequent head function would fail.
+4.  Over this section we've seen how list comprehensions are essentially syntactic sugar for <code>filter</code> and <code>map</code>. Now work in the opposite direction and define alternative versions of the <code>filter</code> and <code>map</code> using the list comprehension syntax.  </p>
+<div class="highlight"><pre><span></span><span class="w">    </span><span class="n">myFilter</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Bool</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">myFilter</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">x | x &lt;- xs, f x</span><span class="o">]</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="n">myMap</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">a</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">b</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">myMap</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="n">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[</span><span class="n">f</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pre</span><span class="o">=</span><span class="ss">&quot;&quot;</span><span class="w"> </span><span class="n">xs</span><span class="o">=</span><span class="ss">&quot;&quot;</span><span class="o">&gt;</span><span class="w"></span>
+</pre></div>
+
+
+<ol>
+<li>Rewrite <code>doubleOfFirstForEvenSeconds</code> using <code>filter</code> and <code>map</code> instead of list comprehension.  <div class="highlight"><pre><span></span><span class="n">doubleOfFirstForEvenSeconds</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">[</span><span class="n">(Int, Int)</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">Int</span><span class="o">]</span><span class="w"></span>
+<span class="n">doubleOfFirstForEvenSeconds</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">map</span><span class="w"> </span><span class="p">(</span><span class="err">\</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">filter</span><span class="w"> </span><span class="p">(</span><span class="err">\</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">mod</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">ps</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+
+
+</li>
+</ol>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

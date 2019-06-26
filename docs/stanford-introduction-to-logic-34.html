@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Stanford Introduction To Logic: 3.4</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Stanford Introduction To Logic: 3.4</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-12-10T08:30:00+00:00">
+      Sat 10 December 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I'm learning about logic by going through the excellent <a href="http://logic.stanford.edu/intrologic/notes/notes.html">Stanford Introduction to Logic</a>, as part of writing a <a href="http://maths.tlocke.org.uk/">maths tutorial</a>. Here I'm working through <a href="http://logic.stanford.edu/intrologic/exercises/exercise_03_04.html">Exercise 3.4 - Propositional Entailment</a>. Let me know if you disagree with any of my answers:  </p>
+<blockquote>
+<p>Let Γ and Δ be sets of sentences in Propositional Logic, and let φ and ψ be individual sentences in Propositional Logic. State whether each of the following statements is true or false.</p>
+<p>a. If Γ ⊨ φ and Δ ⊨ φ, then Γ ∩ Δ ⊨ φ.</p>
+</blockquote>
+<p>I'll show it's false by providing a counterexample. If P is an atomic formula:  </p>
+<p>Γ = {(P and not P), P}<br>
+Δ = {(φ and not φ), P}  </p>
+<p>Since Γ and Δ contain an unsatisfiable formula they entail everything, so Γ ⊨ φ and Δ ⊨ φ are both true. Also:  </p>
+<p>Γ ∩ Δ = {P}  </p>
+<p>The formula (P implies φ) is not valid, and so it's false that Γ ∩ Δ ⊨ φ.  </p>
+<blockquote>
+<p>b. If Γ ⊨ φ and Δ ⊨ φ, then Γ ∪ Δ ⊨ φ.</p>
+</blockquote>
+<p>If Γ = {P1, P2, P3, ...} then:  </p>
+<p>(P1 and P2 and P3 and ...) implies φ  </p>
+<p>is valid. If Δ = {Q1, Q2, Q3, ...}  </p>
+<p>(P1 and P2 and P3 and ...) and (Q1 and Q2 and Q3 and ...) implies φ  </p>
+<p>must also be valid since for any interpretation, adding more 'and' terms to a formula can never make it true if it was false. If adding the Q terms only introduces false interpretations on the left hand side of the 'implies' then the whole formula will remain valid. So:  </p>
+<p>Γ ∩ Δ ⊨ φ  </p>
+<p>is true.  </p>
+<blockquote>
+<p>c. If Γ ⊨ φ and Δ ⊭ φ, then Γ ∪ Δ ⊨ φ.</p>
+</blockquote>
+<p>Using the same reasoning as above, if:  </p>
+<p>Γ = {P1, P2, P3, ...}  </p>
+<p>then:  </p>
+<p>(P1 and P2 and P3 and ...) implies φ  </p>
+<p>is valid. If:  </p>
+<p>Δ = {Q1, Q2, Q3, ...}  </p>
+<p>then:  </p>
+<p>(P1 and P2 and P3 and ...) and (Q1 and Q2 and Q3 and ...) implies φ  </p>
+<p>must also be valid since for any interpretation, adding more 'and' terms to a formula can never make it true if it was false. If adding the Q terms only introduces false interpretations on the left hand side of the 'implies' then the whole formula will remain valid. So:  </p>
+<p>Γ ∪ Δ ⊨ φ  </p>
+<p>is true.  </p>
+<blockquote>
+<p>d. If Γ ⊭ ψ, then Γ ⊨ ¬ψ.</p>
+</blockquote>
+<p>If:  </p>
+<p>Γ = {P1, P2, P3, ...}  </p>
+<p>then if Γ ⊭ ψ then:  </p>
+<p>(P1 and P2 and P3 and ...) implies ψ  </p>
+<p>is not valid.  </p>
+<p>then by the unsatisfiability theorem:  </p>
+<p>P1 and P2 and P3 and ... and ψ  </p>
+<p>is unsatisfiable.  </p>
+<blockquote>
+<p>e. If Γ ⊨ ¬ψ, then Γ ⊭ ψ.</p>
+</blockquote>
+<p>Using proof by counterexample. If:  </p>
+<p>Γ = {(ψ and not ψ)} then:  </p>
+<p>(ψ and not ψ) implies ¬ψ  </p>
+<p>is valid, because (ψ and not ψ) is unsatisfiable. So:  </p>
+<p>(ψ and not ψ) implies ψ  </p>
+<p>is also valid. And so:  </p>
+<p>Γ ⊨ ψ  </p>
+<p>is true, which means:  </p>
+<p>Γ ⊭ ψ  </p>
+<p>is false.</p>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

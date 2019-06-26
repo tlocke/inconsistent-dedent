@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Configuration Parameters For pg8000</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Configuration Parameters For pg8000</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2014-08-20T07:40:00+01:00">
+      Wed 20 August 2014
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I've been getting various requests for <a href="http://pythonhosted.org//pg8000/">pg8000</a> to use the same <a href="http://www.postgresql.org/docs/9.3/static/libpq-envars.html">environment variables as the PostgreSQL client applications</a>. At first sight this seems like a good idea, because it provides standardization in that pg8000 would work straight away with the environment variables that you've already got set up for the PostgreSQL client applications.  </p>
+<p>However, pg8000 is a library and so different considerations apply. As a library can be used in all sorts of scenarios, I think it's better for the application to decide how it gets its configuration values. If PostgreSQL environment variables make sense for the application, then that application should implement that. The job of pg8000 is to merely take the parameters of the connect function. Anything more would add to the complexity of pg8000 which we're always trying to avoid.  </p>
+<p>So, I'm minded to turn down the requests for adding different configuration methods.</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

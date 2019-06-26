@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Inconsistent Dedent - Articles by Tony</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+  <section id="content">
+    <ul id="post-list">
+          <li>
+            <article>
+              <header>
+                <h2 class="entry-title"><a href="/stanford-introduction-to-logic-36.html">Stanford Introduction To Logic 3.6</a></h2>
+              </header>
+<footer class="post-info">
+        <abbr class="published" title="2017-06-24T06:35:00+01:00">
+                Published: Sat 24 June 2017
+        </abbr>
+
+
+</footer><!-- /.post-info --><p>Here are my answers to <a href="http://logic.stanford.edu/intrologic/exercises/exercise_03_06.html">Stanford Introduction To Logic 3.6</a>.  </p>
+<blockquote>
+<p>Logical equivalence, logical entailment, and logical consistency are related to each other in interesting ways, but they are not identical. Answer the following true or false questions about the relationships between these concepts.</p>
+<p>a. If φ is equivalent to ψ, then φ entails ψ.</p>
+</blockquote>
+<p>If φ is equivalent to ψ, then φ can be written wherever ψ appears so:  </p>
+<p>φ entails φ  </p>
+<p>which (by the deduction theorem) is true if:  </p>
+<p>φ → φ  </p>
+<p>is valid. It is valid and so a. is true.  </p>
+<blockquote>
+<p>b. If φ is equivalent to ψ, then φ is consistent with ψ.</p>
+</blockquote>
+<p>If the theory {φ, ψ} is consistent, then:  </p>
+<p>φ ∧ ψ  </p>
+<p>is satisfiable. If φ is equivalent to ψ, then φ can be written wherever ψ appears so:  </p>
+<p>φ ∧ φ  </p>
+<p>since φ ∧ φ is equivalent to φ, we can say that the theory is only consistent if φ is satisfiable. So b. is false.  </p>
+<blockquote>
+<p>c. If φ entails ψ, then φ is equivalent to ψ.</p>
+</blockquote>
+<p>Disprove by counterexample. If φ entails ψ then:  </p>
+<p>φ → ψ  </p>
+<p>is valid. If φ is (P ∧ ¬P) and ψ = P then (φ → ψ) is valid and so (φ entails ψ) is true. But (P ∧ ¬P) is not equivalent to P, so φ is not equivalent to ψ, and so c. is false.  </p>
+<blockquote>
+<p>d. If φ entails ψ, then φ is consistent with ψ.</p>
+</blockquote>
+<p>Disprove by counterexample. If φ entails ψ then (φ → ψ) is valid, and if φ is consistent with ψ then (φ ∧ ψ) is satisfiable. If φ is (P ∧ ¬P) and ψ is P then (φ → ψ) is valid, but (φ ∧ ψ) is not satisfiable. Therefore d. is false.  </p>
+<blockquote>
+<p>e. If φ is consistent with ψ, then φ is equivalent to ψ.</p>
+</blockquote>
+<p>Disprove by counterexample. If φ is consistent with ψ then (φ ∧ ψ) is satisfiable. Say If φ is (P ∨ ¬P) and ψ is P, then (φ ∧ ψ) is satisfiable, but φ is not equivalent to ψ, so e. is false.  </p>
+<blockquote>
+<p>f. If φ is consistent with ψ, then φ entails ψ.</p>
+</blockquote>
+<p>Disprove by counterexample. If φ is consistent with ψ then (φ ∧ ψ) is satisfiable. If φ entails ψ then (φ → ψ) is valid. But if φ is (P ∨ ¬P) and ψ is P, then (φ ∧ ψ) is satisfiable and (φ → ψ) is not valid, so f. is false.</p>
+</p>            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/stanford-introduction-to-logic-35.html" rel="bookmark" title="Permalink to Stanford Introduction To Logic: 3.5">Stanford Introduction To Logic: 3.5</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2017-01-02T07:16:00+00:00"> Mon 02 January 2017 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Here are my answers to <a href="http://logic.stanford.edu/intrologic/exercises/exercise_03_05.html">Stanford Introduction To Logic: 3.5</a>.  </p>
+<blockquote>
+<p>In each of the following cases, determine whether the given individual sentence is consistent with the given set of sentences.</p>
+<p>a. {<em>p</em> ∨ <em>q</em>, <em>p</em> ∨ ¬<em>q</em>, ¬<em>p</em> ∨ <em>q</em>} and (¬<em>p</em> ∨ ¬<em>q</em>)</p>
+</blockquote>
+<p>Using a truth table:  </p>
+<p>p   q   p ∨ q   p …</p>
+                <a class="readmore" href="/stanford-introduction-to-logic-35.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/stanford-introduction-to-logic-34.html" rel="bookmark" title="Permalink to Stanford Introduction To Logic: 3.4">Stanford Introduction To Logic: 3.4</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2016-12-10T08:30:00+00:00"> Sat 10 December 2016 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>I'm learning about logic by going through the excellent <a href="http://logic.stanford.edu/intrologic/notes/notes.html">Stanford Introduction to Logic</a>, as part of writing a <a href="http://maths.tlocke.org.uk/">maths tutorial</a>. Here I'm working through <a href="http://logic.stanford.edu/intrologic/exercises/exercise_03_04.html">Exercise 3.4 - Propositional Entailment</a>. Let me know if you disagree with any of my answers:  </p>
+<blockquote>
+<p>Let Γ and Δ be sets of sentences in Propositional …</p></blockquote>
+                <a class="readmore" href="/stanford-introduction-to-logic-34.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/haskell-wikibook-higher-order-functions.html" rel="bookmark" title="Permalink to Haskell wikibook: Higher-order functions">Haskell wikibook: Higher-order functions</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2016-09-27T13:36:00+01:00"> Tue 27 September 2016 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <blockquote>
+<p>Write <code>insensitive</code>, such that <code>quickSort' insensitive dictionary</code> gives <code>["a", "for", "have", "I", "Linux", "thing"]</code>.</p>
+</blockquote>
+<p>insensitive x y = compare (map toLower x) (map toLower y)  </p>
+<blockquote>
+<p>Exercises<br>
+<em>(Challenging)</em> The following exercise combines what you have learned about higher order functions, recursion and I/O. We are going to recreate what is known …</p></blockquote>
+                <a class="readmore" href="/haskell-wikibook-higher-order-functions.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/haskell-wikibook-more-on-functions.html" rel="bookmark" title="Permalink to Haskell Wikibook: More on functions">Haskell Wikibook: More on functions</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2016-09-25T07:12:00+01:00"> Sun 25 September 2016 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>The questions for this chapter were:  </p>
+<blockquote>
+<p>Exercises  </p>
+<ul>
+<li>Lambdas are a nice way to avoid defining unnecessary separate functions. Convert the following let- or where-bindings to lambdas:<ul>
+<li><code>map f xs where f x = x * 2 + 3</code></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>map (\ x -&gt; x * 2 + 3) xs  </p>
+<blockquote>
+<ul>
+<li>
+<ul>
+<li><code>let f x y = read x + y in foldr …</code></li></ul></li></ul></blockquote>
+                <a class="readmore" href="/haskell-wikibook-more-on-functions.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/haskell-wikibook-control-structures.html" rel="bookmark" title="Permalink to Haskell Wikibook: Control Structures">Haskell Wikibook: Control Structures</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2016-09-25T05:52:00+01:00"> Sun 25 September 2016 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Well I can see that I haven't done any learning of Haskell for ages. Now that I look back at it, it all looks like gobbledigook to me. Well I probably need to get on with doing some questions:  </p>
+<blockquote>
+<p>Exercises  </p>
+<ol>
+<li>Redo the "Haskell greeting" exercise in <a href="https://en.wikibooks.org/wiki/Haskell/Simple_input_and_output#Controlling_actions" title="Haskell/Simple input and output">Simple input and output …</a></li></ol></blockquote>
+                <a class="readmore" href="/haskell-wikibook-control-structures.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/haskell-wikibook-pattern-matching.html" rel="bookmark" title="Permalink to Haskell Wikibook: Pattern Matching">Haskell Wikibook: Pattern Matching</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2016-04-24T08:33:00+01:00"> Sun 24 April 2016 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Here are my answers to the exercises in the <a href="https://en.wikibooks.org/wiki/Haskell/Pattern_matching">Haskell Wikibook: Pattern Matching</a> chapter:  </p>
+<blockquote>
+<ol>
+<li>
+<p>Test the flawed <code>h</code> function above in GHCi, with arguments equal to and different from 1. Then, explain what goes wrong.  </p>
+<p>The following code:  </p>
+<div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">h</span> <span class="p">::</span> <span class="nb">Int</span> <span class="o">-&gt;</span> <span class="n">Bool</span>
+<span class="n">h</span> <span class="n">k</span> <span class="o">=</span> <span class="k">True</span>
+<span class="n">h</span> <span class="n">_</span> <span class="o">=</span> <span class="k">False</span>
+</pre></div>
+
+
+<p>won't …</p></li></ol></blockquote>
+                <a class="readmore" href="/haskell-wikibook-pattern-matching.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/haskell-wikibook-type-declarations.html" rel="bookmark" title="Permalink to Haskell Wikibook: Type declarations">Haskell Wikibook: Type declarations</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2016-04-24T07:29:00+01:00"> Sun 24 April 2016 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Here are my answers to the <a href="https://en.wikibooks.org/wiki/Haskell/Type_declarations">Haskell Wikibook: Type declarations</a> chapter questions:  </p>
+<blockquote>
+<p>Reread the function definitions above. Then look closer at the <code>showDate</code> helper function. We said it was provided "for the sake of code clarity", but there is a certain clumsiness in the way it is used. You have …</p></blockquote>
+                <a class="readmore" href="/haskell-wikibook-type-declarations.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/haskell-wikibook-lists-iii.html" rel="bookmark" title="Permalink to Haskell Wikibook: Lists III">Haskell Wikibook: Lists III</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2016-04-17T11:32:00+01:00"> Sun 17 April 2016 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Reading the Haskell Wikibook, Lists III chapter, I can't get my head round the idea that since Haskell has lazy evaluation, a foldr can be used on infinite lists. Here's foldr:  </p>
+<div class="highlight"><pre><span></span><span class="nv">foldr</span>            :: <span class="ss">(</span><span class="nv">a</span> <span class="o">-&gt;</span> <span class="nv">b</span> <span class="o">-&gt;</span> <span class="nv">b</span><span class="ss">)</span> <span class="o">-&gt;</span> <span class="nv">b</span> <span class="o">-&gt;</span> [<span class="nv">a</span>] <span class="o">-&gt;</span> <span class="nv">b</span>
+<span class="nv">foldr</span> <span class="nv">f</span> <span class="nv">acc</span> []     <span class="o">=</span> <span class="nv">acc</span>
+<span class="nv">foldr</span> <span class="nv">f</span> <span class="nv">acc</span> <span class="ss">(</span><span class="nv">x</span>:<span class="nv">xs</span><span class="ss">)</span> <span class="o">=</span> <span class="nv">f</span> <span class="nv">x</span> <span class="ss">(</span><span class="nv">foldr …</span></pre></div>
+                <a class="readmore" href="/haskell-wikibook-lists-iii.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+          <li>
+              <article class="hentry">
+                <header>
+                  <h2 class="entry-title"><a href="/haskell-wikibook-lists-ii.html" rel="bookmark" title="Permalink to Haskell Wikibook: Lists II">Haskell Wikibook: Lists II</a>
+                  </h2>
+                </header>
+                <footer class="post-info">
+                  <time class="published" datetime="2016-04-16T06:25:00+01:00"> Sat 16 April 2016 </time>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Here are my answers to the Haskell Wikibook: Lists II questions:  </p>
+<blockquote>
+<p>Write the following functions and test them out. Don't forget the type signatures.  </p>
+<ol>
+<li>
+<p>takeInt returns the first <em>n</em> items in a list. So, <code>takeInt 4 [11,21,31,41,51,61]</code> returns <code>[11,21,31,41]</code>.  </p>
+<div class="highlight"><pre><span></span><span class="n">takeInt</span> <span class="o">::</span> <span class="n">Integer</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="n">Integer …</span></pre></div></li></ol></blockquote>
+                <a class="readmore" href="/haskell-wikibook-lists-ii.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article>
+          </li>
+    </ul><!-- /#posts-list -->
+<p class="paginator">
+    Page 1 / 4
+        <a href="/author/tony2.html">&raquo;</a>
+</p>
+  </section><!-- /#content -->
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

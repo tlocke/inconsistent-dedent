@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Stanford Introduction To Logic 3.6</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Stanford Introduction To Logic 3.6</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2017-06-24T06:35:00+01:00">
+      Sat 24 June 2017
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Here are my answers to <a href="http://logic.stanford.edu/intrologic/exercises/exercise_03_06.html">Stanford Introduction To Logic 3.6</a>.  </p>
+<blockquote>
+<p>Logical equivalence, logical entailment, and logical consistency are related to each other in interesting ways, but they are not identical. Answer the following true or false questions about the relationships between these concepts.</p>
+<p>a. If φ is equivalent to ψ, then φ entails ψ.</p>
+</blockquote>
+<p>If φ is equivalent to ψ, then φ can be written wherever ψ appears so:  </p>
+<p>φ entails φ  </p>
+<p>which (by the deduction theorem) is true if:  </p>
+<p>φ → φ  </p>
+<p>is valid. It is valid and so a. is true.  </p>
+<blockquote>
+<p>b. If φ is equivalent to ψ, then φ is consistent with ψ.</p>
+</blockquote>
+<p>If the theory {φ, ψ} is consistent, then:  </p>
+<p>φ ∧ ψ  </p>
+<p>is satisfiable. If φ is equivalent to ψ, then φ can be written wherever ψ appears so:  </p>
+<p>φ ∧ φ  </p>
+<p>since φ ∧ φ is equivalent to φ, we can say that the theory is only consistent if φ is satisfiable. So b. is false.  </p>
+<blockquote>
+<p>c. If φ entails ψ, then φ is equivalent to ψ.</p>
+</blockquote>
+<p>Disprove by counterexample. If φ entails ψ then:  </p>
+<p>φ → ψ  </p>
+<p>is valid. If φ is (P ∧ ¬P) and ψ = P then (φ → ψ) is valid and so (φ entails ψ) is true. But (P ∧ ¬P) is not equivalent to P, so φ is not equivalent to ψ, and so c. is false.  </p>
+<blockquote>
+<p>d. If φ entails ψ, then φ is consistent with ψ.</p>
+</blockquote>
+<p>Disprove by counterexample. If φ entails ψ then (φ → ψ) is valid, and if φ is consistent with ψ then (φ ∧ ψ) is satisfiable. If φ is (P ∧ ¬P) and ψ is P then (φ → ψ) is valid, but (φ ∧ ψ) is not satisfiable. Therefore d. is false.  </p>
+<blockquote>
+<p>e. If φ is consistent with ψ, then φ is equivalent to ψ.</p>
+</blockquote>
+<p>Disprove by counterexample. If φ is consistent with ψ then (φ ∧ ψ) is satisfiable. Say If φ is (P ∨ ¬P) and ψ is P, then (φ ∧ ψ) is satisfiable, but φ is not equivalent to ψ, so e. is false.  </p>
+<blockquote>
+<p>f. If φ is consistent with ψ, then φ entails ψ.</p>
+</blockquote>
+<p>Disprove by counterexample. If φ is consistent with ψ then (φ ∧ ψ) is satisfiable. If φ entails ψ then (φ → ψ) is valid. But if φ is (P ∨ ¬P) and ψ is P, then (φ ∧ ψ) is satisfiable and (φ → ψ) is not valid, so f. is false.</p>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

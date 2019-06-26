@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Haskell wikibook: Type basics II</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Haskell wikibook: Type basics II</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-04-10T08:13:00+01:00">
+      Sun 10 April 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Here are my answers for the chapter called Next Steps:  </p>
+<blockquote>
+<p>We cheated a little when moving from the second version of <code>pts</code> to the third one: they do not do exactly the same thing. Can you spot what the difference is?</p>
+<div class="highlight"><pre><span></span><span class="n">pts</span> <span class="p">::</span> <span class="nb">Int</span> <span class="o">-&gt;</span> <span class="nb">Int</span>
+<span class="n">pts</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">pts</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">pts</span> <span class="mi">3</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">pts</span> <span class="mi">4</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">pts</span> <span class="mi">5</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">pts</span> <span class="mi">6</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">pts</span> <span class="n">_</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+
+
+</blockquote>
+<div>
+
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+
+>     pts :: Int -> Int
+>     pts 1 = 10
+>     pts 2 = 6
+>     pts x
+>         | x <= 6    = 7 - x
+>         | otherwise = 0
+
+        Gives different answers if the parameter to the function is negative.  
+
+And the chapter Simple Input and Output:  
+
+> Write a program which asks the user for the base and height of a right angled triangle, calculates its area, and prints it to the screen. The interaction should look something like:  
+>
+>     The base?
+>     3.3
+>     The height?
+>     5.4
+>     The area of that triangle is 8.91
+>
+> You will need to use the function `read` to convert user strings like "3.3" into numbers like 3.3 and the function `show` to convert a number into string.
+
+
+<samp>main = do  
+        putStrLn "The base?"  
+        b &lt;- getLine  
+        putStrLn "The height?"  
+        h &lt;- getLine  
+        let m = "The area of that triangle is "  
+        putStrLn (m ++ (show (area (read b) (read h))))  
+
+area b h = b \* h / 2 </samp>
+
+</div>
+
+</div>
+
+<div class="highlight"><pre><span></span>
+</pre></div>
+
+
+<blockquote>
+<p>Write a program that asks the user for his or her name. If the name is one of Simon, John or Phil, tell the user that you think Haskell is a great programming language. If the name is Koen, tell them that you think debugging Haskell is fun (Koen Classen is one of the people who works on Haskell debugging); otherwise, tell the user that you don't know who he or she is.<br>
+(As far as syntax goes there are a few different ways to do it; write at least a version using <code>if</code> / <code>then</code> / <code>else</code>.)</p>
+</blockquote>
+<p><samp>main = do<br>
+        putStrLn "What's your name?"<br>
+        n &lt;- getLine<br>
+        putStrLn (resp n)  </p>
+<p>{-<br>
+resp :: String -&gt; String<br>
+resp n <br>
+        | elem n ["Simon", "John", "Phil"] = "Haskell is marvelous!"<br>
+        | n == "Koen" = "Debugging Haskell is fun."<br>
+        | otherwise = "Name not recognized."<br>
+-}  </p>
+<p>resp n = if elem n ["Simon", "John", "Phil"]<br>
+        then "Haskell is marvelous!"<br>
+        else if n == "Koen"<br>
+                then<br>
+                        "Debugging Haskell is fun."<br>
+                else<br>
+                        "Name not recognized."<br>
+  </samp>  </p>
+<p>+-----------------------------------+-----------------------------------+
+| sweet                             | unsweet                           |
++===================================+===================================+
+| <div                              | <div                              |
+| class="mw-highlight mw-content-lt | class="mw-highlight mw-content-lt |
+| r"                                | r"                                |
+| dir="ltr">                        | dir="ltr"&gt;                        |
+|                                   |                                   |
+|      do name &lt;- getLine           |      do name &lt;- getLine           |
+|         let loudName = makeLoud n |         let loudName = makeLoud n |
+| ame                               | ame                               |
+|         putStrLn ("Hello " ++ lou |         in  do putStrLn ("Hello " |
+| dName ++ "!")                     |  ++ loudName ++ "!")              |
+|         putStrLn (                |                putStrLn (         |
+|             "Oh boy! Am I excited |                    "Oh boy! Am I  |
+|  to meet you, "                   | excited to meet you, "            |
+|                 ++ loudName)      |                        ++ loudNam |
+|                                   | e)                                |
+| </div>                            |                                   |
+|                                   | </div>                            |
++-----------------------------------+-----------------------------------+</p>
+<p>+-----------------------------------------------------------------------+
+| Exercises                                                             |
++=======================================================================+
+| 1.  Why does the unsweet version of the let binding require an extra  |
+|     <code>do</code> keyword?\                                                    |
+|     Because an 'in' clause can contain any Haskell, so we have to use |
+|     the 'do' keyword to say that we're going to execute actions.      |
+| 2.  Do you always need the extra <code>do</code>?\                               |
+|     Only if you're doing actions.                                     |
+| 3.  (extra credit) Curiously, <code>let</code> without <code>in</code> is exactly how we    |
+|     wrote things when we were playing with the interpreter in the     |
+|     beginning of this book. Why is it ok to omit the <code>in</code> keyword in  |
+|     the interpreter but needed (outside of <em>do</em> blocks) in a source   |
+|     file?\                                                            |
+|     Perhaps because lines entered in the interpreter are implicitly   |
+|     within a 'do' block.                                              |
++-----------------------------------------------------------------------+</p>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

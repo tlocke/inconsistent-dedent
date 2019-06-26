@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Haskell Wikibook: Type declarations</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Haskell Wikibook: Type declarations</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-04-24T07:29:00+01:00">
+      Sun 24 April 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Here are my answers to the <a href="https://en.wikibooks.org/wiki/Haskell/Type_declarations">Haskell Wikibook: Type declarations</a> chapter questions:  </p>
+<blockquote>
+<p>Reread the function definitions above. Then look closer at the <code>showDate</code> helper function. We said it was provided "for the sake of code clarity", but there is a certain clumsiness in the way it is used. You have to pass three separate Int arguments to it, but these arguments are always linked to each other as part of a single date. It would make no sense to do things like passing the year, month and day values of the Anniversary in a different order, or to pass the month value twice and omit the day.  </p>
+<ul>
+<li>
+<p>Could we use what we've seen in this chapter so far to reduce this clumsiness?  </p>
+<p>Yes, we can create a Date type.
+-   Declare a <code>Date</code> type which is composed of three Int, corresponding to year, month and day. Then, rewrite <code>showDate</code> so that it uses the new Date data type. What changes will then be needed in <code>showAnniversary</code> and the <code>Anniversary</code> for them to make use of Date?.  </p>
+<div class="highlight"><pre><span></span><span class="nv">data</span> <span class="nv">MyDate</span> <span class="o">=</span> <span class="nv">MyDate</span> <span class="nv">Int</span> <span class="nv">Int</span> <span class="nv">Int</span>
+
+<span class="nv">data</span> <span class="nv">Anniversary</span> <span class="o">=</span> <span class="nv">Birthday</span> <span class="nv">String</span> <span class="nv">MyDate</span>       <span class="o">--</span> <span class="nv">name</span>, <span class="nv">date</span>
+                 <span class="o">|</span> <span class="nv">Wedding</span> <span class="nv">String</span> <span class="nv">String</span> <span class="nv">MyDate</span> <span class="o">--</span> <span class="nv">spouse</span> <span class="nv">name</span> <span class="mi">1</span>,
+                                                <span class="o">--</span> <span class="nv">spouse</span> <span class="nv">name</span> <span class="mi">2</span>, <span class="nv">date</span>
+
+<span class="nv">showDate</span> :: <span class="nv">MyDate</span> <span class="o">-&gt;</span> <span class="nv">String</span>
+<span class="nv">showDate</span> <span class="ss">(</span><span class="nv">MyDate</span> <span class="nv">y</span> <span class="nv">m</span> <span class="nv">d</span><span class="ss">)</span> <span class="o">=</span> <span class="k">show</span> <span class="nv">y</span> <span class="o">++</span> <span class="s2">&quot;</span><span class="s">-</span><span class="s2">&quot;</span> <span class="o">++</span> <span class="k">show</span> <span class="nv">m</span> <span class="o">++</span> <span class="s2">&quot;</span><span class="s">-</span><span class="s2">&quot;</span> <span class="o">++</span> <span class="k">show</span> <span class="nv">d</span>
+
+<span class="nv">showAnniversary</span> :: <span class="nv">Anniversary</span> <span class="o">-&gt;</span> <span class="nv">String</span>
+<span class="nv">showAnniversary</span> <span class="ss">(</span><span class="nv">Birthday</span> <span class="nv">name</span> <span class="nv">date</span><span class="ss">)</span> <span class="o">=</span> <span class="nv">name</span> <span class="o">++</span> <span class="s2">&quot;</span><span class="s"> born </span><span class="s2">&quot;</span> <span class="o">++</span> <span class="nv">showDate</span> <span class="nv">date</span>
+<span class="nv">showAnniversary</span> <span class="ss">(</span><span class="nv">Wedding</span> <span class="nv">name1</span> <span class="nv">name2</span> <span class="nv">date</span><span class="ss">)</span> <span class="o">=</span> <span class="nv">name1</span> <span class="o">++</span> <span class="s2">&quot;</span><span class="s"> married </span><span class="s2">&quot;</span> <span class="o">++</span> <span class="nv">name2</span> <span class="o">++</span> <span class="s2">&quot;</span><span class="s"> on </span><span class="s2">&quot;</span> <span class="o">++</span> <span class="nv">showDate</span> <span class="nv">date</span>
+</pre></div>
+
+
+</li>
+</ul>
+</blockquote>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

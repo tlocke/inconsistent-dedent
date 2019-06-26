@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - pg8000-1.9.11 Released</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">pg8000-1.9.11 Released</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2014-07-20T04:12:00+01:00">
+      Sun 20 July 2014
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p><a href="https://pythonhosted.org/pg8000/">pg8000-1.9.11</a> has been released. The changes are:  </p>
+<ul>
+<li>
+<div class="first">
+
+<p>Add support for two-phase commit DBAPI extension. Thanks to Mariano Reingart’s TPC code on the Google Code version:</p>
+</div>
+
+<p><a href="https://code.google.com/p/pg8000/source/detail?r=c8609701b348b1812c418e2c7">https://code.google.com/p/pg8000/source/detail?r=c8609701b348b1812c418e2c7</a><br>
+   on which the code for this commit is based.<br>
+-   <div class="first"></p>
+<p>Deprecate <code class="docutils literal">copy_from()</code> and <code class="docutils literal">copy_to()</code> The methods <code class="docutils literal">copy_from()</code> and <code class="docutils literal">copy_to()</code> of the <code class="docutils literal">Cursor</code> object are deprecated because it’s simpler and more flexible to use the <code class="docutils literal">execute()</code> method with a <code class="docutils literal">fileobj</code> parameter.</p>
+</div>
+
+</li>
+<li>
+<div class="first">
+
+<p>Fixed bug in reporting unsupported authentication codes. Thanks to <a href="https://github.com/hackgnar">https://github.com/hackgnar</a> for reporting this and providing the fix.</p>
+</div>
+
+</li>
+<li>
+<div class="first">
+
+<p>Have a default for the <code class="docutils literal">user</code> paramater of the <code class="docutils literal">connect()</code> function. If the <code class="docutils literal">user</code> parameter of the <code class="docutils literal">connect()</code> function isn’t provided, look first for the <code class="docutils literal">PGUSER</code> then the <code class="docutils literal">USER</code> environment variables. Thanks to Alex Gaynor <a href="https://github.com/alex">https://github.com/alex</a> for this suggestion.</p>
+</div>
+
+</li>
+<li>
+<div class="first">
+
+<p>Before PostgreSQL 8.2, <code class="docutils literal">COPY</code> didn’t give row count. Until PostgreSQL 8.2 (which includes Amazon Redshift which forked at 8.0) the <code class="docutils literal">COPY</code> command didn’t return a row count, but pg8000 thought it did. That’s fixed now.</p>
+</div>
+
+</li>
+</ul>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

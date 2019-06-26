@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Haskell Wikibook: More on functions</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Haskell Wikibook: More on functions</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-09-25T07:12:00+01:00">
+      Sun 25 September 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>The questions for this chapter were:  </p>
+<blockquote>
+<p>Exercises  </p>
+<ul>
+<li>Lambdas are a nice way to avoid defining unnecessary separate functions. Convert the following let- or where-bindings to lambdas:<ul>
+<li><code>map f xs where f x = x * 2 + 3</code></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>map (\ x -&gt; x * 2 + 3) xs  </p>
+<blockquote>
+<ul>
+<li>
+<ul>
+<li><code>let f x y = read x + y in foldr f 1 xs</code></li>
+</ul>
+</li>
+</ul>
+<p>foldr (\ x y -&gt; read x + y) 1 xs  </p>
+<ul>
+<li>
+<ul>
+<li>Sections are just syntactic sugar for lambda operations. I.e. <code>(+2)</code> is equivalent to <code>\x -&gt; x + 2</code>. What would the following sections 'desugar' to? What would be their types?</li>
+<li><code>(4+)</code></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>\x -&gt; 4 + x  </p>
+<blockquote>
+<ul>
+<li>
+<ul>
+<li><code>(1 `elem`)</code></li>
+</ul>
+</li>
+</ul>
+<p>\x -&gt; elem 1 x  </p>
+<ul>
+<li>
+<ul>
+<li><code>(`notElem` "abc")</code></li>
+</ul>
+</li>
+</ul>
+<p>\x -&gt; notElem x "abc"  </p>
+</blockquote>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Haskell Wikibook: Control Structures</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Haskell Wikibook: Control Structures</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-09-25T05:52:00+01:00">
+      Sun 25 September 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Well I can see that I haven't done any learning of Haskell for ages. Now that I look back at it, it all looks like gobbledigook to me. Well I probably need to get on with doing some questions:  </p>
+<blockquote>
+<p>Exercises  </p>
+<ol>
+<li>Redo the "Haskell greeting" exercise in <a href="https://en.wikibooks.org/wiki/Haskell/Simple_input_and_output#Controlling_actions" title="Haskell/Simple input and output">Simple input and output/Controlling actions</a>, this time using a <code>case</code> statement.</li>
+</ol>
+</blockquote>
+<p>myDoGuessing num = do<br>
+        putStrLn "Enter your guess:"<br>
+        guess &lt;- getLine<br>
+        case compare (read guess) num of<br>
+                LT -&gt; do putStrLn "Too low!"<br>
+                         myDoGuessing num<br>
+                GT -&gt; do putStrLn "Too high!"<br>
+                         myDoGuessing num<br>
+                EQ -&gt; do putStrLn "You Win!"  </p>
+<blockquote>
+<ol>
+<li>What does the following program print out? And why?</li>
+</ol>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+
+<div class="highlight"><pre><span></span><span class="nv">main</span> <span class="o">=</span>
+ <span class="k">do</span> <span class="nv">x</span> <span class="o">&lt;-</span> <span class="nv">getX</span>
+    <span class="nv">putStrLn</span> <span class="nv">x</span>
+
+<span class="nv">getX</span> <span class="o">=</span>
+ <span class="k">do</span> <span class="k">return</span> <span class="s2">&quot;</span><span class="s">My Shangri-La</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="s">beneath</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="s">the summer moon</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="s">I will</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="s">return</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="s">again</span><span class="s2">&quot;</span>
+</pre></div>
+
+
+</div>
+
+</blockquote>
+<p>I thought it would print out 'again'. The reason is that getX executes a series of actions and the last one is what the function evaluates to.  </p>
+<blockquote>
+<div class="mw-highlight mw-content-ltr" dir="ltr">
+
+</div>
+
+</blockquote>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>

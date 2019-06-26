@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <title>Inconsistent Dedent - Learning Haskell from the Wikibook</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/theme/css/main.css" />
+    <link rel=icon href=/theme/images/icons/favicon.png sizes="16x16" type="image/png">
+
+
+
+
+
+</head>
+
+<body id="index" class="home">
+    <header id="banner" class="body">
+    </header><!-- /#banner -->
+    <nav id="menu"><ul>
+        <li><a href="/">Tony Locke</a></li>
+          
+        <li><a href="/archives.html">Archive</a></li>
+        <li><a href="http://twitter.com/t_locke">Twitter</a></li>
+        <li><a href="https://github.com/tlocke">GitHub</a></li>
+    </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">Learning Haskell from the Wikibook</h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2016-04-10T05:05:00+01:00">
+      Sun 10 April 2016
+    </time>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I thought I should learn Haskell as I'm clueless about functional programming and haven't used a statically types language for ages. Anyway, I'm learning it from the <a href="https://en.wikibooks.org/wiki/Haskell">Haskell Wikibook</a>. Throughout they give exercises and here are my  answers so far:  </p>
+<ul>
+<li>Explain how GHCi evaluates <code>quadruple 5</code>.</li>
+</ul>
+<p>The quadruple function is defined as:  </p>
+<div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">x</span>    <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="n">quadruple</span> <span class="n">x</span> <span class="o">=</span> <span class="n">double</span> <span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>[First, Haskell will substitute definition of double in the quadruple function to give:]{.p}  </p>
+<div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>[Then it will substitute 5 for x:]{.p}  </p>
+<div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+
+<p>[Brackets are evaluated first:]{.p}  </p>
+<div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">*</span> <span class="mi">10</span>
+
+<span class="mi">20</span>
+</pre></div>
+
+
+<ul>
+<li>Define a function that subtracts 12 from half its argument.</li>
+</ul>
+<p><code>half x = x / 2hmtwelve x = half x - 12</code>  </p>
+<ul>
+<li>Write a function to calculate the volume of a box.  </li>
+</ul>
+<p><code>volbox h w l = h * w * l</code></p>
+<!-- -->
+
+<ul>
+<li>Approximately how many stones are the famous pyramids at Giza made up of? Hint: you will need estimates for the volume of the pyramids and the volume of each block.  </li>
+</ul>
+<p>Assuming a bottom edge of the pyramid is 100m, and a block is a cube of side 0.5m, the number of stones is:<br>
+<code>100 ^ 3 / 2 / 0.5^3</code><br>
+   which is 4,000,000 stones. The actual answer is 2.3m, so I don't think my estimate is too bad. 
+-   Write a function to calculate the volume of a cylinder. The volume of a cylinder is the area of the base, which is a circle (you already programmed this function in this chapter, so reuse it) multiplied by the height.<br>
+<code>areaCirc r = pi * r^2volCyl r h = areaCirc r * h</code>
+-   Try using <code>:type</code> on the literal value <code>"H"</code> (notice the double quotes). What happens? Why?<br>
+   The interpreter reports: <code>"H" :: [Char]</code> because the double quotes mean it's a string of length 1.
+-   Try using <code>:type</code> on the literal value <code>'Hello World'</code> (notice the single quotes). What happens? Why?<br>
+   The interpreter gives an error, because single quotes denote a single character, but we've entered more than one. 
+-   What are the types of the following functions? For any functions involving numbers, you can just pretend the numbers are Ints.<br>
+   -   The <code>negate</code> function, which takes an Int and returns that Int with its sign swapped. For example, <code>negate 4 = -4</code>, and <code>negate (-2) = 2</code><br>
+<code>negate :: Int -&gt; Int</code>
+    -   The <code>(||)</code> function, pronounced 'or', that takes two Bools and returns a third Bool which is True if either of the arguments were, and False otherwise.<br>
+<code>(||) :: Bool -&gt; Bool -&gt; Bool</code>
+    -   A <code>monthLength</code> function which takes a Bool which is True if we are considering a leap year and False otherwise, and an Int which is the number of a month; and returns another Int which is the number of days in that month.<br>
+<code>monthLength :: Bool -&gt; Int -&gt; Int</code>
+    -   <code>f x y = not x &amp;&amp; y</code><br>
+<code>f :: Bool -&gt; Bool -&gt; Bool</code>
+    -   <code>g x = (2*x - 1)^2</code><br>
+<code>g :: Int -&gt; Int</code>
+-   Would the following piece of Haskell work: <code>3:[True,False]</code>? Why or why not?<br>
+   No it wouldn't work because the resulting list would have a mix of types which isn't allowed.
+-   Write a function <code>cons8</code> that takes a list as an argument and conses <code>8</code> (at the beginning) on to it.<br>
+<code>cons8 l = 8:l</code><br>
+   Test it out on the following lists by doing:
+    1.  <code>cons8 []</code><br>
+<code>[8]</code>
+    2.  <code>cons8 [1,2,3]</code><br>
+<code>[8, 1, 2, 3]</code>
+    3.  <code>cons8 [True,False]</code><br>
+       Error, lists can't have a mix of types.
+    4.  <code>let foo = cons8 [1,2,3]</code><br>
+<code>cons8 foo</code><br>
+<code>[8, 8, 1, 2, 3]</code>
+-   Adapt the above function in a way that <code>8</code> is at the end of the list. (Hint: recall the concatenation operator <code>++</code> from the previous chapter.)<br>
+<code>cat8 l = l ++ [8]</code>
+-   Write a function that takes two arguments, a list and a thing, and conses the thing onto the list. You can start out with:<br>
+<code>let myCons list thing = thing:list</code></p>
+<h4>Lists And Tuples</h4>
+<ol>
+<li>Which of these are valid Haskell and which are not? Rewrite in cons notation.<ol>
+<li><code>[1,2,3,[]]</code><br>
+   Not valid, because not of the same type.<br>
+<code>1:2:3:[]:[]</code>  </li>
+</ol>
+</li>
+<li><code>[1,[2,3],4]</code><br>
+       Not valid, because not of the same type.<br>
+       1:(2:3:[]):4:[]<ol>
+<li><code>[[1,2,3],[]]</code><br>
+   Valid, because the empty list could be an empty list of integers! <code>(1:2:3:[]):[]:[]</code></li>
+</ol>
+</li>
+<li>Which of these are valid Haskell, and which are not? Rewrite in comma and bracket notation.<ol>
+<li><code>[]:[[1,2,3],[4,5,6]]</code><br>
+   Valid because the empty list could be an empty list of integers. <code>[[], [1, 2, 3], [4, 5, 6]]</code></li>
+<li><code>[]:[]</code><br>
+   Valid. Since there's only one inner list, the outer list must contain lists of the same type.<br>
+<code>[[]]</code></li>
+<li><code>[]:[]:[]</code><br>
+   Valid because an empty list could be of any type. <code>[[], []]</code></li>
+<li><code>[1]:[]:[]</code>Valid, because an empty list could hold items of any type. <code>[[1], []]</code></li>
+<li><code>["hi"]:[1]:[]</code><br>
+   Not valid. A list of strings is a different type to a list of integers.<br>
+<code>[["hi"], [1]]</code></li>
+</ol>
+</li>
+<li>Can Haskell have lists of lists of lists? Why or why not?<br>
+   Yes, as long as each item in a list is of the same type.</li>
+<li>Why is the following list invalid in Haskell?  </li>
+<li><code>[[1,2],3,[4,5]]</code><br>
+       Because the outer list has items of more than one type.</li>
+</ol>
+<!-- -->
+
+<ol>
+<li>Write down the 3-tuple whose first element is 4, second element is "hello" and third element is True.<br>
+<code>(4, "hello", True)</code></li>
+<li>Which of the following are valid tuples?<ol>
+<li><code>(4, 4)</code><br>
+   Valid.</li>
+<li><code>(4, "hello")</code><br>
+   Valid.</li>
+<li><code>(True, "Blah", "foo")</code><br>
+   Valid.</li>
+<li><code>()</code><br>
+   Valid.</li>
+</ol>
+</li>
+<li>Lists can be built by consing new elements onto them. Cons a number onto a list of numbers, you will get back a list of numbers. There is no such way to build up tuples.<ol>
+<li>Why do you think that is?<br>
+   For any type consed to a list, the returned type will be a list of that type, so the function is general. With adding an element to a tuple, an entirely new type will be created, so it isn't so general.</li>
+<li>For the sake of argument, say that there was such a function. What would you get if you "consed" something on a tuple?<br>
+   You'd get a new type.</li>
+</ol>
+</li>
+</ol>
+<!-- -->
+
+<ol>
+<li>Which of these are valid Haskell, and why?<ul>
+<li><code>1:(2,3)</code><br>
+   Invalid; can't cons onto a tuple.</li>
+<li><code>(2,4):(2,3)</code><br>
+   Invalid; can't cons onto a tuple.</li>
+<li><code>(2,4):[]</code><br>
+   Valid. Can cons onto a list.</li>
+<li><code>[(2,4),(5,5),('a','b')]</code><br>
+   Invalid. The elements of a list must all be of the same type.</li>
+<li><code>([2,4],[2,2])</code>Valid. The elements of the list are all of the same type. </li>
+</ul>
+</li>
+</ol>
+<!-- -->
+
+<ol>
+<li>Use a combination of <code>fst</code> and <code>snd</code> to extract the 4 from the tuple <code>(("Hello", 4), True)</code>.<br>
+   snd (fst (("Hello", 4), True))</li>
+<li>Normal chess notation is somewhat different to ours: it numbers the rows from 1-8 and the columns a-h; and the column label is customarily given first. Could we label a specific point with a character and a number, like <code>('a', 4)</code>? What important difference with lists does this illustrate?<br>
+   Yes, we could represent a square with ('a', 4). A tuple can contain elements of different types.</li>
+<li>Write a function which returns the head and the tail of a list as the first and second elements of a tuple.<br>
+<code>fTuple list = (head list, tail list)</code></li>
+<li>Use <code>head</code> and <code>tail</code> to write a function which gives the fifth element of a list. Then, make a critique of it, pointing out any annoyances and pitfalls you notice.<br>
+<code>el5 l = head (tail (tail (tail (tail l))))</code> It's quite verbose. Also it fails with any list with fewer than 5 elements. </li>
+</ol>
+<p>Give type signatures for the following functions:  </p>
+<ol>
+<li>The solution to the third exercise of the previous section ("... a function which returns the head and the tail of a list as the first and second elements of a tuple").<br>
+<code>fTuple :: [a] -&gt; (a, a)</code></li>
+<li>The solution to the fourth exercise of the previous section ("... a function which gives the fifth element of a list").<br>
+<code>el5 :: [a] -&gt; a</code></li>
+<li><code>h x y z = chr (x - 2)</code> (remember we discussed chr in the previous chapter). <code>h :: a -&gt; b -&gt; c -&gt; char</code></li>
+</ol>
+</p>
+  </div><!-- /.entry-content -->
+</section>
+    <br>
+    <footer id="contentinfo" class="body">
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="/theme/images/icons/cc.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer><!-- /#contentinfo -->
+</body>
+</html>
